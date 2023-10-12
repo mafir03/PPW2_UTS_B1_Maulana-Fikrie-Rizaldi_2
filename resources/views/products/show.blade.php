@@ -1,4 +1,5 @@
-@extends('layouts')
+<!-- # 10 benerin nama view -->
+@extends('products.layouts')
 
 @section('content')
 

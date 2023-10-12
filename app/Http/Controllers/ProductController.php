@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+// # 2.2 import model product
+use App\Models\Product;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
-class Controller extends Controller
+// # 1.1 Benerin nama classnya
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index() : View
-    {
-        return view('index', [
+    {   
+        // # 4 Benerin refer view ke folder views/products
+        return view('products.index', [
             'products' => Product::latest()->paginate(3)
         ]);
     }
@@ -33,7 +37,8 @@ class Controller extends Controller
     public function store(StoreProductRequest $request) : RedirectResponse
     {
         Product::create($request->all());
-        return redirect()->route('index')
+        // # 8 benerin routing
+        return redirect()->route('products.index')
                 ->withSuccess('New product is added successfully.');
     }
 
@@ -43,7 +48,8 @@ class Controller extends Controller
     public function show(Product $product) : View
     {
         return view('products.show', [
-            'product' => $products
+            // # 9 benerin nama variabel
+            'product' => $product
         ]);
     }
 
@@ -53,7 +59,8 @@ class Controller extends Controller
     public function edit(Product $product) : View
     {
         return view('products.edit', [
-            'products' => $product
+            // # 11 'products' -> 'product'
+            'product' => $product
         ]);
     }
 
@@ -70,10 +77,13 @@ class Controller extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product) : RedirectResponse
+
+    // # 2.1 Benerin parameter Product
+    public function destroy(Product $product) : RedirectResponse
     {
         $product->delete();
-        return redirect()->route('index')
+        // # 12 'index' -> 'products.index'
+        return redirect()->route('products.index')
                 ->withSuccess('Product is deleted successfully.');
     }
 }

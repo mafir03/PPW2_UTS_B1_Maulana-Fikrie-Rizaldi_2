@@ -1,4 +1,5 @@
-@extends('layouts')
+<!--  # 5 benerin refer extends folder views/products -->
+@extends('products.layouts')
 
 @section('content')
 

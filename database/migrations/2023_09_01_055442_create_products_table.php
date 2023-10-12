@@ -10,8 +10,9 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('', function (Blueprint $table) {
+    {   
+        // # 3 Benerin nama table yang kosong
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
             $table->string('name');
